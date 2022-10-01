@@ -12,15 +12,10 @@ const Profile = ({ onClick }) => {
   return (
     <Menu flip>
       <MenuButton>
-        <Avatar
-          name='User'
-          bg='brand.400'
-          src={randomAvatar}
-          onClick={onClick}
-        />
+        <Avatar name='User' bg='brand.400' src={randomAvatar} />
       </MenuButton>
       <MenuList>
-        <MenuItem icon={<MdLogout />}>
+        <MenuItem onClick={onClick} icon={<MdLogout />}>
           <span>Logout</span>
         </MenuItem>
         <MenuItem icon={<MdSettings />}>
