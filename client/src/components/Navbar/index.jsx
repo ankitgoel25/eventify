@@ -12,6 +12,10 @@ import {
   DrawerContent,
   DrawerCloseButton,
   useDisclosure,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
 } from '@chakra-ui/react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { IoWallet } from 'react-icons/io5';
@@ -43,7 +47,7 @@ const Navbar = () => {
       <TopBorder borderH='0.5rem' />
       <Flex
         py='4'
-        px={['8', '16', '20', '52']}
+        px={['8', '16', '20', '10%']}
         justifyContent='space-between'
         alignItems='center'
         position='sticky'
@@ -57,7 +61,6 @@ const Navbar = () => {
           <Link href='/explore' passHref>
             <a>
               <Box
-                mr={['1', '4', '4', '8', '12']}
                 fontWeight='bold'
                 cursor='pointer'
                 _hover={{ color: 'brand.550' }}
@@ -66,27 +69,45 @@ const Navbar = () => {
               </Box>
             </a>
           </Link>
-          <Link href='/events' passHref>
-            <a>
+          <Menu placement='bottom-end'>
+            <MenuButton>
               <Box
-                mr={['1', '4', '4', '8', '12']}
+                ml={['1', '4', '4', '8', '12']}
                 fontWeight='bold'
                 cursor='pointer'
                 _hover={{ color: 'brand.550' }}
               >
-                My Events
+                Events
               </Box>
-            </a>
-          </Link>
+            </MenuButton>
+            <MenuList minW='160px'>
+              <MenuItem>
+                <Link href='/events' passHref>
+                  <a>My Events</a>
+                </Link>
+              </MenuItem>
+              <MenuItem>
+                <Link href='/rsvps' passHref>
+                  <a>My RSVPs</a>
+                </Link>
+              </MenuItem>
+            </MenuList>
+          </Menu>
+
           {!address ? (
-            <Button onClick={connectWithMetamask}>
+            <Button
+              ml={['1', '4', '4', '8', '12']}
+              onClick={connectWithMetamask}
+            >
               <Flex align='center' justify='center'>
                 <IoWallet style={{ marginRight: '10px' }} />
                 Connect Wallet
               </Flex>
             </Button>
           ) : (
-            <Profile onClick={disconnect} />
+            <Box ml={['1', '4', '4', '8', '12']}>
+              <Profile onClick={disconnect} />
+            </Box>
           )}
         </Flex>
         <IconButton

@@ -1,4 +1,3 @@
-import Navbar from '../components/Landing/Navbar';
 import { Box, Wrap, Flex, Heading, Text, Button } from '@chakra-ui/react';
 import data from '../data.jsx';
 import Tag from '../components/Tag.jsx';
@@ -7,7 +6,6 @@ import TagDivider from '../components/TagDivider.jsx';
 const ExplorePage = () => {
   return (
     <Box>
-      <Navbar />
       <Wrap mt='3%' mb='3%' spacing='30px' justify='center'>
         {data.map((e, i) => (
           <Box
