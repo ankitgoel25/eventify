@@ -65,7 +65,7 @@ const Navbar = () => {
                 cursor='pointer'
                 _hover={{ color: 'brand.550' }}
               >
-                Explore Events
+                Explore
               </Box>
             </a>
           </Link>

@@ -7,7 +7,7 @@ const ExplorePage = () => {
     <Box mx='10%'>
       <Flex my='4' justify='center' wrap='wrap'>
         {data.map((e, i) => (
-          <EventCard key={i} data={e} present />
+          <EventCard key={i} data={e} />
         ))}
       </Flex>
     </Box>

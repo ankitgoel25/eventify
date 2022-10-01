@@ -16,6 +16,7 @@ const Home = () => {
         color='brand.600'
         mt={['8', null]}
       >
+        <About />
         <ProcessBlock
           flexD='row'
           // imageSrc={LoginImg}
@@ -48,7 +49,6 @@ const Home = () => {
           question paper in a pdf format.'
         />
       </Flex>
-      <About />
       {/* Future scope section */}
       <Flex
         mt={['24', '40', '44', '52', '44']}

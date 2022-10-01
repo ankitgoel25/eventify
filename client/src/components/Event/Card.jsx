@@ -2,7 +2,7 @@ import { Box, Button, Flex, Text } from '@chakra-ui/react';
 import Link from 'next/link';
 import { MdOutlineAccessTime, MdOutlineLocationOn } from 'react-icons/md';
 
-const EventCard = ({ data }) => {
+const EventCard = ({ data, present }) => {
   return (
     <Box
       position='relative'
@@ -39,21 +39,29 @@ const EventCard = ({ data }) => {
           <MdOutlineAccessTime />
           <span>{data.time}</span>
         </Flex>
-        <Flex align='flex-end' justify='space-between' mt='20px'>
-          <Flex direction='column'>
-            <Text fontWeight='bold' fontSize='20px' lineHeight='1'>
-              {data.attendees} Attending
-            </Text>
-            <Text fontSize='12px' lineHeight='1.1' mt='0.5'>
-              out of {data.maxCap}
-            </Text>
+        {present ? (
+          <Flex align='flex-end' justify='space-between' mt='20px'>
+            <Flex direction='column'>
+              <Text fontWeight='bold' fontSize='20px' lineHeight='1'>
+                {data.attendees} Attending
+              </Text>
+              <Text fontSize='12px' lineHeight='1.1' mt='0.5'>
+                out of {data.maxCap}
+              </Text>
+            </Flex>
+            <Link href={`/event/${data.id}`} passHref>
+              <a>
+                <Button>Attend</Button>
+              </a>
+            </Link>
           </Flex>
-          <Link href='/event/abc' passHref>
+        ) : (
+          <Link href={`/event/${data.id}`} passHref>
             <a>
-              <Button>Attend</Button>
+              <Button mt='18px'>View Details</Button>
             </a>
           </Link>
-        </Flex>
+        )}
       </Box>
     </Box>
   );
