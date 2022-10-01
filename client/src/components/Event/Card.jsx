@@ -28,7 +28,7 @@ const EventCard = ({ data }) => {
         <Text fontSize='2xl' fontWeight='600'>
           {data.title}
         </Text>
-        <Flex justify='space-between'>
+        <Flex justify='space-between' mt='3'>
           <Text fontWeight='600'>{data.date}</Text>
           <Flex alignItems='center' gap='8px' fontSize='14px'>
             <MdOutlineLocationOn />
@@ -39,7 +39,7 @@ const EventCard = ({ data }) => {
           <MdOutlineAccessTime />
           <span>{data.time}</span>
         </Flex>
-        <Flex align='flex-end' justify='space-between' mt='25px'>
+        <Flex align='flex-end' justify='space-between' mt='20px'>
           <Flex direction='column'>
             <Text fontWeight='bold' fontSize='20px' lineHeight='1'>
               {data.attendees} Attending
