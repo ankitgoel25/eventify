@@ -16,6 +16,8 @@ const EventCard = ({ data, present }) => {
       display='flex'
       justifyContent='center'
       borderRadius='10px'
+      boxShadow='base'
+      backdropBlur='2px'
     >
       <Box
         position='absolute'
