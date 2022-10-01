@@ -1,5 +1,6 @@
 import { Button, Flex, Box, Image } from '@chakra-ui/react';
 import { MdOutlineExplore } from 'react-icons/md';
+import Link from 'next/link';
 
 const Hero = () => {
   return (
@@ -33,15 +34,19 @@ const Hero = () => {
           autem. Excepturi, error!
         </Flex>
 
-        <Button
-          w='fit-content'
-          mt={['8', '10', '12', '12', '14']}
-          fontSize={['small', 'lg']}
-          // onClick={() => navigate('/anonymously')}
-        >
-          <MdOutlineExplore size='24px' style={{ marginRight: '10px' }} />
-          Explore Events
-        </Button>
+        <Link href='/explore' passHref>
+          <a>
+            <Button
+              w='fit-content'
+              mt={['8', '10', '12', '12', '14']}
+              fontSize={['small', 'lg']}
+              // onClick={() => navigate('/anonymously')}
+            >
+              <MdOutlineExplore size='24px' style={{ marginRight: '10px' }} />
+              Explore Events
+            </Button>
+          </a>
+        </Link>
       </Flex>
       <Image
         src='/images/events.svg'
