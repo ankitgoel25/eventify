@@ -19,7 +19,7 @@ const Home = () => {
         <About />
         <ProcessBlock
           flexD='row'
-          // imageSrc={LoginImg}
+          imageSrc='/images/process2.jpg'
           animatedHead='Organize'
           nonAnimatedHead=' Events'
           content="You can create event on Eventify and get attendees registered for the event with an assurance.
@@ -29,7 +29,7 @@ const Home = () => {
         />
         <ProcessBlock
           flexD='row-reverse'
-          // imageSrc={PostQuestionsImg}
+          imageSrc='/images/process1.jpg'
           animatedHead='Attend'
           nonAnimatedHead=' Events'
           content='You can attend the event by registering on the events listed on Eventify by following some simple steps. You will have
@@ -40,7 +40,7 @@ const Home = () => {
       </Flex>
       {/* Future scope section */}
       <Flex
-        mt={['24', '40', '44', '52', '44']}
+        mt={['12', '12', '12', '12', '10']}
         justifyContent='center'
         flexDirection={['column', 'column', 'row']}
         alignItems={['center', 'center', 'normal']}
