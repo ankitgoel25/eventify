@@ -80,6 +80,7 @@ contract Events is ReentrancyGuard {
         fees,
         eventName
       );
+      return eventId;
     }
 
     function createNewRSVP(bytes32 eventId) external payable {
