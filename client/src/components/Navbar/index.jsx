@@ -65,7 +65,7 @@ const Navbar = () => {
                 cursor='pointer'
                 _hover={{ color: 'brand.550' }}
               >
-                Explore Events
+                Explore
               </Box>
             </a>
           </Link>
@@ -82,12 +82,12 @@ const Navbar = () => {
             </MenuButton>
             <MenuList minW='160px'>
               <MenuItem>
-                <Link href='/events' passHref>
+                <Link href='/myEvents' passHref>
                   <a>My Events</a>
                 </Link>
               </MenuItem>
               <MenuItem>
-                <Link href='/rsvps' passHref>
+                <Link href='/myRsvps' passHref>
                   <a>My RSVPs</a>
                 </Link>
               </MenuItem>

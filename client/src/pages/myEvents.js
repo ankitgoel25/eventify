@@ -4,7 +4,7 @@ import data from '../data.jsx';
 import Tag from '../components/Tag.jsx';
 import TagDivider from '../components/TagDivider.jsx';
 
-const ExplorePage = () => {
+const myEvents = () => {
   return (
     <Box>
       <Wrap mt='3%' mb='3%' spacing='30px' justify='center'>
@@ -61,4 +61,4 @@ const ExplorePage = () => {
   );
 };
 
-export default ExplorePage;
+export default myEvents;
