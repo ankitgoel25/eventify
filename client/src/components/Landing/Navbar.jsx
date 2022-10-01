@@ -11,12 +11,11 @@ import {
   DrawerCloseButton,
   useDisclosure,
   Image,
+  Text,
 } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
-// import { useNavigate } from 'react-router-dom';
 import { GrGoogle } from 'react-icons/gr';
-// import Logo from '../../assets/mainLogo.svg';
 
 const NavBar = ({
   executeProcessScroll,
@@ -43,7 +42,7 @@ const NavBar = ({
   return (
     <Flex
       py='3'
-      px={['8', '16', '20', '32']}
+      px={['8', '16', '20', '52']}
       my={['2', '4']}
       mb={['0', '0', '0', '0', '4']}
       justifyContent='space-between'
@@ -56,12 +55,12 @@ const NavBar = ({
         sticky === 'is-sticky' ? '0px 19px 14px -17px rgba(0,0,0,0.1)' : 'none'
       }
     >
-      {/* <Image
-        src={Logo}
-        h={['4rem', '5rem']}
-        w={['10rem', '12rem']}
-        alt='Logo'
-      /> */}
+      <Flex align='center' gap='2'>
+        <Image src='/images/Logo.svg' h={['2rem', '3rem']} alt='Logo' />
+        <Text fontSize='26px' fontWeight='600'>
+          Eventify
+        </Text>
+      </Flex>
       <Flex alignItems='center' display={['none', 'none', 'flex']} ml='auto'>
         <Box
           mr={['1', '4', '4', '8', '12']}
