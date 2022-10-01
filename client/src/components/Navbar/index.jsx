@@ -63,7 +63,7 @@ const Navbar = () => {
               </Box>
             </a>
           </Link>
-          <Link href='/events' passHref>
+          <Link href='/myEvents' passHref>
             <a>
               <Box
                 mr={['1', '4', '4', '8', '12']}

@@ -1,4 +1,4 @@
-import Navbar from '../components/Landing/Navbar';
+import Link from 'next/link';
 import { Box, Wrap, Flex, Heading, Text, Button } from '@chakra-ui/react';
 import data from '../data.jsx';
 import Tag from '../components/Tag.jsx';
@@ -7,10 +7,10 @@ import TagDivider from '../components/TagDivider.jsx';
 const ExplorePage = () => {
   return (
     <Box>
-      <Navbar />
       <Wrap mt='3%' mb='3%' spacing='30px' justify='center'>
         {data.map((e, i) => (
           <Box
+            key={i}
             w='450px'
             h='400px'
             bgImage={e.pic}
@@ -47,7 +47,11 @@ const ExplorePage = () => {
                     out of {e.maxCap}
                   </Text>
                 </Flex>
-                <Button>Attend</Button>
+                <Link href='/event' passHref>
+                  <a>
+                    <Button>Attend</Button>
+                  </a>
+                </Link>
               </Flex>
             </Box>
           </Box>
