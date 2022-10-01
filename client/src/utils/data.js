@@ -1,8 +1,8 @@
 const data = [
   {
     title: 'MLH Hackcon',
-    pic: '/images/event-bg2.jpg',
-    venue: 'New Delhi, India',
+    pic: '/images/event-bg3.jpg',
+    venue: 'London',
     date: '25 Sept 2022',
     maxCap: '200',
     attendees: '80',
@@ -28,7 +28,7 @@ const data = [
   },
   {
     title: 'MLH Hackcon',
-    pic: '/images/event-bg1.jpg',
+    pic: '/images/event-bg2.jpg',
     venue: 'New Delhi, India',
     date: '25 Sept 2022',
     maxCap: '200',
@@ -46,7 +46,7 @@ const data = [
   },
   {
     title: 'MLH Hackcon',
-    pic: '/images/event-bg2.jpg',
+    pic: '/images/event-bg3.jpg',
     venue: 'New Delhi, India',
     date: '25 Sept 2022',
     maxCap: '200',
@@ -64,7 +64,7 @@ const data = [
   },
   {
     title: 'MLH Hackcon',
-    pic: '/images/event-bg2.jpg',
+    pic: '/images/event-bg1.jpg',
     venue: 'New Delhi, India',
     date: '25 Sept 2022',
     maxCap: '200',
@@ -82,7 +82,7 @@ const data = [
   },
   {
     title: 'MLH Hackcon',
-    pic: '/images/event-bg2.jpg',
+    pic: '/images/event-bg1.jpg',
     venue: 'New Delhi, India',
     date: '25 Sept 2022',
     maxCap: '200',
@@ -91,7 +91,7 @@ const data = [
   },
   {
     title: 'MLH Hackcon',
-    pic: '/images/event-bg2.jpg',
+    pic: '/images/event-bg3.jpg',
     venue: 'New Delhi, India',
     date: '25 Sept 2022',
     maxCap: '200',
@@ -100,7 +100,7 @@ const data = [
   },
   {
     title: 'MLH Hackcon',
-    pic: '/images/event-bg2.jpg',
+    pic: '/images/event-bg.jpg',
     venue: 'New Delhi, India',
     date: '25 Sept 2022',
     maxCap: '200',

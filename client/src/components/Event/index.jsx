@@ -1,10 +1,14 @@
-import { Box, Button, Flex, Text } from '@chakra-ui/react';
+import { useRef } from 'react';
+import { Box, Button, Divider, Flex, Text } from '@chakra-ui/react';
+import { MdOutlineLocationOn } from 'react-icons/md';
+import RegisterForm from './RegisterForm';
 
 const Event = ({ id }) => {
   const isOneDay = false;
+  const registerRef = useRef(null);
 
   return (
-    <Box>
+    <>
       <Box
         position='relative'
         bgImage='/images/event-bg1.jpg'
@@ -45,17 +49,24 @@ const Event = ({ id }) => {
             <Text fontSize='4xl' fontWeight='600'>
               Event Name
             </Text>
-            {/* <Text fontSize='lg' fontWeight='500'>
-              12pm - 8pm
-            </Text> */}
+            <Flex fontSize='lg' fontWeight='500' align='center' gap='6px'>
+              <MdOutlineLocationOn />
+              <span>New Delhi, India</span>
+            </Flex>
           </Box>
           <Box>
-            <Button>Register</Button>
+            <Button
+              onClick={() =>
+                registerRef.current.scrollIntoView({ behavior: 'smooth' })
+              }
+            >
+              Register
+            </Button>
           </Box>
         </Flex>
         <Text fontSize='md' fontWeight='400' mt='4' textAlign='justify'>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate,
-          explicabo molestias quas enim accusantium ducimus nostrum reiciendis
+          explicabo molestias quas enim accusantium ducimus no strum reiciendis
           consequuntur, vel consectetur, magni voluptatum error cupiditate ut
           excepturi necessitatibus ratione neque. Pariatur quibusdam
           consectetur, quaerat inventore illum molestiae et dolor dolorum culpa
@@ -78,7 +89,7 @@ const Event = ({ id }) => {
             25 Oct 2022, 10am - 26 Oct 2022 9pm
           </Text>
         </Flex>
-        <Box mt='4' gap='10px'>
+        <Box mt='4' gap='10px' ref={registerRef}>
           <Text fontSize='lg' fontWeight='600'>
             Having any doubts?
           </Text>
@@ -86,8 +97,10 @@ const Event = ({ id }) => {
             Contact the organiser at event@gmail.com
           </Text>
         </Box>
+        <Divider my='8' />
+        <RegisterForm />
       </Flex>
-    </Box>
+    </>
   );
 };
 
