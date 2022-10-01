@@ -23,7 +23,6 @@ const Home = () => {
         flexDirection='column'
         alignItems='center'
         color='brand.600'
-        ref={processRef}
         mt={['8', null]}
       >
         <ProcessBlock
@@ -58,7 +57,7 @@ const Home = () => {
           question paper in a pdf format.'
         />
       </Flex>
-      <About aboutRef={aboutRef} />
+      <About />
       {/* Future scope section */}
       <Flex
         mt={['24', '40', '44', '52', '44']}
@@ -78,7 +77,7 @@ const Home = () => {
           question and EnormoQB will extract the question from the picture uploaded.'
         />
       </Flex>
-      <Footer footerRef={footerRef} />
+      <Footer />
     </Flex>
   );
 };
