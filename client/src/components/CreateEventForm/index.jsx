@@ -49,7 +49,11 @@ const CreateEventForm = () => {
             <FormLabel fontSize={18} htmlFor='community'>
               Organizing Community
             </FormLabel>
-            <Input id='community' placeholder='Organization Name' boxShadow='base'  />
+            <Input
+              id='Community'
+              placeholder='Name Of Organizers'
+              boxShadow='base'
+            />
           </FormControl>
         </Box>
         <Box borderRadius='5px' w='48%' flexShrink={0} rounded='md'>
@@ -94,7 +98,30 @@ const CreateEventForm = () => {
             </FormLabel>
             <Input
               id='fees'
-              placeholder='Enter the secure deposit'
+              placeholder='Enter the secure deposit amount'
+              boxShadow='base'
+              type='number'
+            />
+          </FormControl>
+        </Box>
+      </Flex>
+      <Flex align='flex-end'>
+        <Box borderRadius='5px' w='48%' flexShrink={0} rounded='md' mr={10}>
+          <FormControl mb={6} isRequired>
+            <FormLabel fontSize={18} mb={0}>
+              Venue
+            </FormLabel>
+            <Input id='EventName' placeholder='Event Venue' boxShadow='base' />
+          </FormControl>
+        </Box>
+        <Box borderRadius='5px' w='48%' flexShrink={0} rounded='md'>
+          <FormControl mb={6} isRequired>
+            <FormLabel fontSize={18} htmlFor='fees'>
+              Location Url
+            </FormLabel>
+            <Input
+              id='fees'
+              placeholder='Google Maps link of the venue'
               boxShadow='base'
               type='number'
               
@@ -108,7 +135,7 @@ const CreateEventForm = () => {
             Description
           </FormLabel>
           <Textarea
-            placeholder='Here is a sample placeholder'
+            placeholder='Event Description'
             boxShadow='base'
             id='description'
             size='lg'

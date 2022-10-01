@@ -1,10 +1,14 @@
-import { Box, Button, Flex, Image, Text } from '@chakra-ui/react';
+import { useRef } from 'react';
+import { Box, Button, Divider, Flex, Text } from '@chakra-ui/react';
+import { MdOutlineLocationOn } from 'react-icons/md';
+import RegisterForm from './RegisterForm';
 
-const Event = () => {
+const Event = ({ id }) => {
   const isOneDay = false;
+  const registerRef = useRef(null);
 
   return (
-    <Box>
+    <>
       <Box
         position='relative'
         bgImage='/images/event-bg1.jpg'
@@ -17,8 +21,8 @@ const Event = () => {
           position='absolute'
           direction='column'
           align='center'
-          bottom={isOneDay ? '-30px' : '-48px'}
-          left='52'
+          bottom={isOneDay ? '-30px' : '-46px'}
+          left='10%'
           bg='#FFFFFFD9'
           pt='4'
           px='4'
@@ -39,23 +43,30 @@ const Event = () => {
           {!isOneDay && <Text fontSize='sm'>onwards</Text>}
         </Flex>
       </Box>
-      <Flex direction='column' mx='52' mt={isOneDay ? '12' : '14'} mb='10'>
+      <Flex direction='column' mx='10%' mt={isOneDay ? '12' : '16'} mb='10'>
         <Flex align='start' justify='space-between'>
           <Box>
             <Text fontSize='4xl' fontWeight='600'>
               Event Name
             </Text>
-            {/* <Text fontSize='lg' fontWeight='500'>
-              12pm - 8pm
-            </Text> */}
+            <Flex fontSize='lg' fontWeight='500' align='center' gap='6px'>
+              <MdOutlineLocationOn />
+              <span>New Delhi, India</span>
+            </Flex>
           </Box>
           <Box>
-            <Button>Register</Button>
+            <Button
+              onClick={() =>
+                registerRef.current.scrollIntoView({ behavior: 'smooth' })
+              }
+            >
+              Register
+            </Button>
           </Box>
         </Flex>
         <Text fontSize='md' fontWeight='400' mt='4' textAlign='justify'>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate,
-          explicabo molestias quas enim accusantium ducimus nostrum reiciendis
+          explicabo molestias quas enim accusantium ducimus no strum reiciendis
           consequuntur, vel consectetur, magni voluptatum error cupiditate ut
           excepturi necessitatibus ratione neque. Pariatur quibusdam
           consectetur, quaerat inventore illum molestiae et dolor dolorum culpa
@@ -78,7 +89,7 @@ const Event = () => {
             25 Oct 2022, 10am - 26 Oct 2022 9pm
           </Text>
         </Flex>
-        <Box mt='4' gap='10px'>
+        <Box mt='4' gap='10px' ref={registerRef}>
           <Text fontSize='lg' fontWeight='600'>
             Having any doubts?
           </Text>
@@ -86,8 +97,10 @@ const Event = () => {
             Contact the organiser at event@gmail.com
           </Text>
         </Box>
+        <Divider my='8' />
+        <RegisterForm />
       </Flex>
-    </Box>
+    </>
   );
 };
 

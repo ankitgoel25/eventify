@@ -7,8 +7,6 @@ import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
 contract Events is ReentrancyGuard {
 
-    uint256 listingPrice = 0.025 ether;
-
     struct CreateEvent {
         bytes32 eventId;
         string eventName;
@@ -34,10 +32,6 @@ contract Events is ReentrancyGuard {
     event DepositsPaidOut(bytes32 eventId);
 
     mapping(bytes32 => CreateEvent) public idToEvent;
-
-    function getListingPrice() public view returns (uint256) {
-      return listingPrice; 
-    }
 
     function createNewEvent(
       uint256 eventTimestamp,
@@ -92,7 +86,7 @@ contract Events is ReentrancyGuard {
 
       require(
           myEvent.confirmedRSVPs.length < myEvent.maxCapacity,
-          "This event has reached capacity"
+          "THIS EVENT HAS REACHED MAX CAPACITY"
       );
 
       for (uint8 i = 0; i < myEvent.confirmedRSVPs.length; i++) {
@@ -109,7 +103,6 @@ contract Events is ReentrancyGuard {
   
       require(msg.sender == myEvent.eventOwner, "NOT AUTHORIZED");
 
-      // require that attendee trying to check in actually RSVP'd
       address rsvpConfirm;
 
       for (uint8 i = 0; i < myEvent.confirmedRSVPs.length; i++) {
@@ -133,7 +126,7 @@ contract Events is ReentrancyGuard {
         myEvent.claimedRSVPs.pop();
       }
 
-      require(sent, "Failed to send Ether");
+      require(sent, "FAILED TO SEND ETHER");
 
       emit ConfirmedAttendee(eventId, attendee);
     }
@@ -164,18 +157,15 @@ contract Events is ReentrancyGuard {
 
       uint256 payout = unclaimed * myEvent.fees;
 
-      // mark as paid before sending to avoid reentrancy attack
       myEvent.paidOut = true;
 
-      // send the payout to the owner
       (bool sent, ) = recipient.call{value: payout}("");
 
-      // if this fails
       if (!sent) {
         myEvent.paidOut = false;
       }
 
-      require(sent, "Failed to send Ether");
+      require(sent, "FAILED TO SEND ETHER");
       emit DepositsPaidOut(eventId);
     }
 

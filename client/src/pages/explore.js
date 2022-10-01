@@ -1,6 +1,6 @@
 import Navbar from '../components/Navbar';
 import { Box, Wrap, Flex, Heading, Text, Button } from '@chakra-ui/react';
-import data from '../data.jsx';
+import data from '../utils/data';
 import Tag from '../components/Tag.jsx';
 import * as firestore from 'firebase/firestore';
 import TagDivider from '../components/TagDivider.jsx';
