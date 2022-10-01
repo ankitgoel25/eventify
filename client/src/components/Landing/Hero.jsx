@@ -1,10 +1,12 @@
 import { Button, Flex, Box, Image } from '@chakra-ui/react';
+import { MdOutlineExplore } from 'react-icons/md';
 
 const Hero = () => {
   return (
     <Flex
       mx={['8', '12', '20', '36', '52']}
-      my={['4', '4', '4', '2', '6']}
+      mt={['4', '4', '4', '2', '8']}
+      mb={['4', '4', '4', '2', '20']}
       justifyContent='space-between'
       flexDirection={['column', 'column', 'row']}
     >
@@ -34,11 +36,12 @@ const Hero = () => {
 
         <Button
           w='fit-content'
-          mt={['8', '10', '12', '12', '16']}
-          fontSize={['small', 'md']}
+          mt={['8', '10', '12', '12', '12']}
+          fontSize={['small', 'lg']}
           // onClick={() => navigate('/anonymously')}
         >
-          Contribute Anonymously
+          <MdOutlineExplore size='24px' style={{ marginRight: '10px' }} />
+          Explore Events
         </Button>
       </Flex>
       <Image

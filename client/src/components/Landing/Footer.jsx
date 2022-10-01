@@ -30,6 +30,7 @@ const Footer = ({ footerRef }) => {
           justifyContent='space-between'
           alignItems='center'
           mr={['4', '4', null]}
+          color='brand.100'
         >
           <Flex fontSize={['md', 'lg']} fontWeight='semibold' m='2'>
             EnormoQB
@@ -55,28 +56,29 @@ const Footer = ({ footerRef }) => {
           flexDir='column'
           justifyContent='space-between'
           alignItems='center'
+          color='brand.100'
         >
           <Flex
             my='1'
-            _hover={{ borderBottom: '1px solid #DEE3F5', cursor: 'pointer' }}
+            _hover={{ borderBottom: '1px solid #EDDAFD', cursor: 'pointer' }}
           >
             About
           </Flex>
           <Flex
             my='1'
-            _hover={{ borderBottom: '1px solid #DEE3F5', cursor: 'pointer' }}
+            _hover={{ borderBottom: '1px solid #EDDAFD', cursor: 'pointer' }}
           >
             Terms
           </Flex>
           <Flex
             my='1'
-            _hover={{ borderBottom: '1px solid #DEE3F5', cursor: 'pointer' }}
+            _hover={{ borderBottom: '1px solid #EDDAFD', cursor: 'pointer' }}
           >
             Policy
           </Flex>
           <Flex
             my='1'
-            _hover={{ borderBottom: '1px solid #DEE3F5', cursor: 'pointer' }}
+            _hover={{ borderBottom: '1px solid #EDDAFD', cursor: 'pointer' }}
           >
             Request a demo
           </Flex>
@@ -84,7 +86,7 @@ const Footer = ({ footerRef }) => {
       </Flex>
       <Flex
         w='100%'
-        bgColor='blue.100'
+        bgColor='brand.150'
         color='brand.600'
         p='2'
         justifyContent='center'
