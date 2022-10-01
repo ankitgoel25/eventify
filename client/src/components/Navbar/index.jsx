@@ -16,19 +16,19 @@ import {
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { IoWallet } from 'react-icons/io5';
 import Logo from './Logo';
-import TopBorder from './TopBorder';
+import TopBorder from '../Landing/TopBorder';
+import Profile from './Profile';
 
-const NavBar = ({}) => {
+const Navbar = () => {
   const [sticky, setSticky] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const isSticky = () => {
-    const scrollTop = window.scrollY;
-    const stickyClass = scrollTop >= 15 ? 'is-sticky' : '';
-    setSticky(stickyClass);
-  };
-
   useEffect(() => {
+    const isSticky = () => {
+      setSticky(Boolean(window.scrollY >= 15));
+    };
+
     window.addEventListener('scroll', isSticky);
     return () => {
       window.removeEventListener('scroll', isSticky);
@@ -39,7 +39,7 @@ const NavBar = ({}) => {
     <>
       <TopBorder borderH='0.5rem' />
       <Flex
-        py='3'
+        py='4'
         px={['8', '16', '20', '52']}
         // my={['2', '4']}
         mb={['0', '0', '0', '0', '4']}
@@ -49,11 +49,7 @@ const NavBar = ({}) => {
         top='0'
         zIndex='10'
         bgColor='brand.100'
-        boxShadow={
-          sticky === 'is-sticky'
-            ? '0px 19px 14px -17px rgba(0,0,0,0.1)'
-            : 'none'
-        }
+        boxShadow={sticky ? '0px 19px 14px -17px rgba(0,0,0,0.1)' : 'none'}
       >
         <Logo />
         <Flex alignItems='center' display={['none', 'none', 'flex']} ml='auto'>
@@ -81,31 +77,22 @@ const NavBar = ({}) => {
               </Box>
             </a>
           </Link>
-
-          {true ? (
+          {!isLoggedIn ? (
             <Button
-              onClick={() => {}}
+              onClick={() => setIsLoggedIn(true)}
               // isLoading={isFetching || isLoading}
-              styles={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
             >
-              <IoWallet style={{ marginRight: '10px' }} />
-              Connect Wallet
+              <Flex align='center' justify='center'>
+                <IoWallet style={{ marginRight: '10px' }} />
+                Connect Wallet
+              </Flex>
             </Button>
           ) : (
-            <Button
-              onClick={() => {}}
-              // isLoading={isFetching}
-            >
-              Dashboard
-            </Button>
+            <Profile onClick={() => setIsLoggedIn(false)} />
           )}
         </Flex>
         <IconButton
-          aria-label='Search database'
+          aria-label='Hamburger'
           icon={<GiHamburgerMenu />}
           onClick={onOpen}
           display={['flex', 'flex', 'none']}
@@ -160,4 +147,4 @@ const NavBar = ({}) => {
   );
 };
 
-export default NavBar;
+export default Navbar;

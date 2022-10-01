@@ -1,7 +1,6 @@
-import Navbar from '../components/Landing/Navbar';
 
 const ExplorePage = () => {
-  return <Navbar />;
+  return <div></div>;
 };
 
 export default ExplorePage;

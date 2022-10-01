@@ -1,5 +1,5 @@
 import { Flex, Image } from '@chakra-ui/react';
-import NavBar from '../components/Landing/Navbar';
+import NavBar from '../components/Navbar';
 import Hero from '../components/Landing/Hero';
 import ProcessBlock from '../components/Landing/ProcessBlock';
 import About from '../components/Landing/About';
@@ -9,15 +9,7 @@ import Footer from '../components/Landing/Footer';
 const Home = () => {
   return (
     <Flex flexDirection='column' bg='brand.100' h='100%'>
-      <NavBar />
       <Hero />
-      {/* <Image
-        mx={['4', '10', '16', '32']}
-        borderRadius='12'
-        src='/images/events.svg'
-        alt='Dashboard'
-        boxShadow='rgba(0, 0, 0, 0.16) 0px 1px 4px'
-      /> */}
       {/* Process Flow */}
       <Flex
         flexDirection='column'
