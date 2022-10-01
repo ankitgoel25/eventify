@@ -1,6 +1,4 @@
-import { useCallback, useRef } from 'react';
 import { Flex, Image } from '@chakra-ui/react';
-import TopBorder from '../components/Landing/TopBorder';
 import NavBar from '../components/Landing/Navbar';
 import Hero from '../components/Landing/Hero';
 import ProcessBlock from '../components/Landing/ProcessBlock';
@@ -9,22 +7,9 @@ import FutureScopeCard from '../components/Landing/FutureScopeCard';
 import Footer from '../components/Landing/Footer';
 
 const Home = () => {
-  const processRef = useRef(null);
-  const aboutRef = useRef(null);
-  const footerRef = useRef(null);
-
-  const executeScroll = useCallback((ref) => {
-    ref.current.scrollIntoView({ behavior: 'smooth' });
-  }, []);
-
   return (
     <Flex flexDirection='column' bg='brand.100' h='100%'>
-      <TopBorder borderH='0.5rem' />
-      <NavBar
-        executeProcessScroll={() => executeScroll(processRef)}
-        executeAboutScroll={() => executeScroll(aboutRef)}
-        executeFooterScroll={() => executeScroll(footerRef)}
-      />
+      <NavBar />
       <Hero />
       {/* <Image
         mx={['4', '10', '16', '32']}
