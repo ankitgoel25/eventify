@@ -5,7 +5,7 @@ const Hero = () => {
   return (
     <Flex
       mx={['8', '12', '20', '36', '52']}
-      mt={['4', '4', '4', '2', '10']}
+      mt={['4', '4', '4', '2', '14']}
       mb={['4', '4', '4', '2', '20']}
       justifyContent='space-between'
       flexDirection={['column', 'column', 'row']}

@@ -41,8 +41,6 @@ const Navbar = () => {
       <Flex
         py='4'
         px={['8', '16', '20', '52']}
-        // my={['2', '4']}
-        mb={['0', '0', '0', '0', '4']}
         justifyContent='space-between'
         alignItems='center'
         position='sticky'
