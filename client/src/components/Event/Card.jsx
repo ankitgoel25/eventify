@@ -16,6 +16,8 @@ const EventCard = ({ data, present }) => {
       display='flex'
       justifyContent='center'
       borderRadius='10px'
+      boxShadow='base'
+      backdropBlur='2px'
     >
       <Box
         position='absolute'
@@ -30,12 +32,12 @@ const EventCard = ({ data, present }) => {
         </Text>
         <Flex justify='space-between' mt='3'>
           <Text fontWeight='600'>{data.date}</Text>
-          <Flex alignItems='center' gap='8px' fontSize='14px'>
+          <Flex alignItems='center' gap='6px' fontSize='14px'>
             <MdOutlineLocationOn />
             <span>{data.venue}</span>
           </Flex>
         </Flex>
-        <Flex alignItems='center' gap='8px' fontSize='14px'>
+        <Flex alignItems='center' gap='6px' fontSize='14px'>
           <MdOutlineAccessTime />
           <span>{data.time}</span>
         </Flex>

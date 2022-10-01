@@ -16,9 +16,10 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  Text,
 } from '@chakra-ui/react';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { IoWallet } from 'react-icons/io5';
+import { IoChevronDown, IoWallet } from 'react-icons/io5';
 import Logo from './Logo';
 import TopBorder from '../Landing/TopBorder';
 import Profile from './Profile';
@@ -60,37 +61,41 @@ const Navbar = () => {
         <Flex alignItems='center' display={['none', 'none', 'flex']} ml='auto'>
           <Link href='/explore' passHref>
             <a>
-              <Box
+              <Text
                 fontWeight='bold'
                 cursor='pointer'
+                fontSize='18px'
                 _hover={{ color: 'brand.550' }}
               >
                 Explore
-              </Box>
+              </Text>
             </a>
           </Link>
           <Menu placement='bottom-end'>
             <MenuButton>
-              <Box
+              <Flex
                 ml={['1', '4', '4', '8', '12']}
                 fontWeight='bold'
                 cursor='pointer'
                 _hover={{ color: 'brand.550' }}
+                align='center'
+                fontSize='18px'
               >
-                Events
-              </Box>
+                <span>Events</span>
+                <IoChevronDown style={{ marginLeft: 5 }} />
+              </Flex>
             </MenuButton>
             <MenuList minW='160px'>
-              <MenuItem>
-                <Link href='/myEvents' passHref>
-                  <a>My Events</a>
-                </Link>
-              </MenuItem>
-              <MenuItem>
-                <Link href='/myRsvps' passHref>
-                  <a>My RSVPs</a>
-                </Link>
-              </MenuItem>
+              <Link href='/my-events' passHref>
+                <a>
+                  <MenuItem>My Events</MenuItem>
+                </a>
+              </Link>
+              <Link href='/my-rsvps' passHref>
+                <a>
+                  <MenuItem>My RSVPs</MenuItem>
+                </a>
+              </Link>
             </MenuList>
           </Menu>
 
