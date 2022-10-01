@@ -2,9 +2,42 @@ import Navbar from '../components/Navbar';
 import { Box, Wrap, Flex, Heading, Text, Button } from '@chakra-ui/react';
 import data from '../data.jsx';
 import Tag from '../components/Tag.jsx';
+import * as firestore from 'firebase/firestore';
 import TagDivider from '../components/TagDivider.jsx';
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import { db } from '../utils/firebase';
+import { useEffect, useState } from 'react';
 
 const ExplorePage = () => {
+  const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const eventsRef = collection(db, 'Events');
+
+    // Create a query against the collection.
+    const todayDate = new Date();
+    const q = query(eventsRef, where('fromDate', '>', todayDate));
+    firestore
+      .getDocs(q)
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          const newEvent = { ...doc.data(), id: doc.id };
+          if (events.length != 0) {
+            setEvents( [...events, newEvent]);
+          }else{
+            setEvents([newEvent]);
+          }
+        });
+      })
+      .then(() => {
+        setLoading(false);
+      });
+  };
   return (
     <Box>
       <Wrap mt='3%' mb='3%' spacing='30px' justify='center'>

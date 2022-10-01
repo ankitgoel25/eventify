@@ -29,10 +29,11 @@ const CreateEventForm = () => {
 //     setFormFields((prev) => ({ ...prev, [e.target.id]: e.target.value }));
 //   }
 
-//   const onSubmit= async()=>{
-//     const eventTimeStamp = Math.floor(toDate)
-//     const eventId = await eventContract.contract.function.createNewEvent(eventTimeStamp, formFields.fees, formFields.maxCapacity, formFields.eventName);
-//   }
+  const onSubmit= async()=>{
+    // const eventTimeStamp = Math.floor(toDate)
+    // const eventId = await eventContract.contract.function.createNewEvent(eventTimeStamp, formFields.fees, formFields.maxCapacity, formFields.eventName);
+    
+    }
 
   return (
     <Box>
