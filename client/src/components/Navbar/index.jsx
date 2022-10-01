@@ -81,16 +81,16 @@ const Navbar = () => {
               </Box>
             </MenuButton>
             <MenuList minW='160px'>
-              <MenuItem>
-                <Link href='/events' passHref>
-                  <a>My Events</a>
-                </Link>
-              </MenuItem>
-              <MenuItem>
-                <Link href='/rsvps' passHref>
-                  <a>My RSVPs</a>
-                </Link>
-              </MenuItem>
+              <Link href='/events' passHref>
+                <a>
+                  <MenuItem>My Events</MenuItem>
+                </a>
+              </Link>
+              <Link href='/rsvps' passHref>
+                <a>
+                  <MenuItem>My RSVPs</MenuItem>
+                </a>
+              </Link>
             </MenuList>
           </Menu>
 
