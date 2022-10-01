@@ -1,5 +1,4 @@
 import { Flex, Image } from '@chakra-ui/react';
-import NavBar from '../components/Navbar';
 import Hero from '../components/Landing/Hero';
 import ProcessBlock from '../components/Landing/ProcessBlock';
 import About from '../components/Landing/About';

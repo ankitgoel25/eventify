@@ -10,7 +10,7 @@ const Profile = ({ onClick }) => {
   );
 
   return (
-    <Menu placement='bottom-end' gutter='4'>
+    <Menu placement='bottom-end'>
       <MenuButton>
         <Avatar name='User' bg='brand.400' src={randomAvatar} />
       </MenuButton>
