@@ -30,8 +30,7 @@ const Hero = () => {
           mt={['8', '10', '12', '10']}
           textAlign={['center', 'center', 'left']}
         >
-          Lorem ipsum, dolor sit amet consectetur adipisicing elitiunt delectus
-          autem. Excepturi, error!
+          Revolutionizing Event Management System with Eventify!
         </Flex>
 
         <Link href='/explore' passHref>
