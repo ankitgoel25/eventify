@@ -20,33 +20,22 @@ const Home = () => {
         <ProcessBlock
           flexD='row'
           // imageSrc={LoginImg}
-          animatedHead='Sign in'
-          nonAnimatedHead=' to your free account'
-          content="It's completely free of cost to get yourself registered on EnormoQB. 
-          All you need is your Gmail address to create an account or sign in. Your anonymity will be maintained. 
-          After logging in, you will land on the dashboard and become one of the many brilliant minds contributing 
-          to our question bank and helping to make the examination system better in India."
+          animatedHead='Organize'
+          nonAnimatedHead=' Events'
+          content="You can create event on Eventify and get attendees registered for the event with an assurance.
+          Follow some simple steps to create an event and it would be added to our events' list that will be visible to people all
+          over the globe. Attendees will register with a minimal security fee. If they dont't make it to the venue a part of 
+          security fee will be transacted to your account, a part to a charity and a part to Eventify."
         />
         <ProcessBlock
           flexD='row-reverse'
           // imageSrc={PostQuestionsImg}
-          animatedHead='Contribute'
-          nonAnimatedHead=' questions'
-          content='Once registered, you will be able to contribute questions to our enormous question pool and 
-          earn some exciting rewards. In order to do that you just have to follow some simple steps. 
-          You can add questions to our question bank by providing all the necessary details and based on various 
-          filters provided. Then wait for the reviewing committee to update the status of the question to approved or rejected.'
-        />
-        <ProcessBlock
-          flexD='row'
-          // imageSrc={GenerateImg}
-          animatedHead='Generate'
-          nonAnimatedHead=' question papers'
-          content='Question papers can be generated with the questions available in the EnormoQB 
-          question bank by following some simple steps. Enter the required details and submit them. 
-          Then you can preview the question paper generated. New questions can be added and the 
-          questions can also be reordered manually. Then you can simply download the desidered 
-          question paper in a pdf format.'
+          animatedHead='Attend'
+          nonAnimatedHead=' Events'
+          content='You can attend the event by registering on the events listed on Eventify by following some simple steps. You will have
+          to pay a security fee of minimal amount that you will be able to get back on successful check-in. You can cancel your 
+          registration within the time period specified by the organizer and get refund. If you will not show up at the event you will not 
+          get any refund. Else you will get a choice whether to get the refund or donate to the charity.'
         />
       </Flex>
       {/* Future scope section */}
@@ -58,14 +47,14 @@ const Home = () => {
         flexWrap='wrap'
       >
         <FutureScopeCard
-          heading='Plagiarism'
-          content='The question submitted by the contributor would go through a plagiarism 
-          check so that the EnormoQB question bank will have original questions only.'
+          heading='Advanced Event Analytics'
+          content='We will provide Event Analytics in the form of beautiful charts and visualizations that will help the organizers 
+          to analyze the event response, and fix any shortcomings in their future events.'
         />
         <FutureScopeCard
-          heading='Optical Character Recognition(OCR)'
-          content='Contributor would be able to upload the picture of the their handwritten 
-          question and EnormoQB will extract the question from the picture uploaded.'
+          heading='Multi-Chain Support'
+          content='We will be supporting multiple crypto chains so as to give the attendees and organizers freedom to use any 
+          cryptocurrency on our platform.'
         />
       </Flex>
       <Footer />
