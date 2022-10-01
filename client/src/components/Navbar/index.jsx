@@ -18,11 +18,14 @@ import { IoWallet } from 'react-icons/io5';
 import Logo from './Logo';
 import TopBorder from '../Landing/TopBorder';
 import Profile from './Profile';
+import { useMetamask, useDisconnect, useAddress } from '@thirdweb-dev/react';
 
 const Navbar = () => {
   const [sticky, setSticky] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const connectWithMetamask = useMetamask();
+  const disconnect = useDisconnect();
+  const address = useAddress();
 
   useEffect(() => {
     const isSticky = () => {
@@ -75,18 +78,15 @@ const Navbar = () => {
               </Box>
             </a>
           </Link>
-          {!isLoggedIn ? (
-            <Button
-              onClick={() => setIsLoggedIn(true)}
-              // isLoading={isFetching || isLoading}
-            >
+          {!address ? (
+            <Button onClick={connectWithMetamask}>
               <Flex align='center' justify='center'>
                 <IoWallet style={{ marginRight: '10px' }} />
                 Connect Wallet
               </Flex>
             </Button>
           ) : (
-            <Profile onClick={() => setIsLoggedIn(false)} />
+            <Profile onClick={disconnect} />
           )}
         </Flex>
         <IconButton
@@ -122,7 +122,6 @@ const Navbar = () => {
               {true ? (
                 <Button
                   onClick={() => {}}
-                  // isLoading={isFetching || isLoading}
                   styles={{
                     display: 'flex',
                     alignItems: 'center',
