@@ -26,6 +26,7 @@
   "devDependencies": {
     "eslint": "8.23.1",
     "eslint-config-airbnb": "^19.0.4",
+    "@next/eslint-plugin-next": "^12.3.1",
     "eslint-config-next": "12.3.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-import-resolver-alias": "^1.1.2",
