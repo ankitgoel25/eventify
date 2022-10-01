@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { GrGoogle } from 'react-icons/gr';
+import { IoWallet } from 'react-icons/io5';
 
 const NavBar = ({
   executeProcessScroll,
@@ -57,7 +57,7 @@ const NavBar = ({
     >
       <Flex align='center' gap='2'>
         <Image src='/images/Logo.svg' h={['2rem', '3rem']} alt='Logo' />
-        <Text fontSize='26px' fontWeight='600'>
+        <Text fontSize='25px' fontWeight='600'>
           Eventify
         </Text>
       </Flex>
@@ -66,29 +66,29 @@ const NavBar = ({
           mr={['1', '4', '4', '8', '12']}
           fontWeight='bold'
           cursor='pointer'
-          _hover={{ color: 'blue.400' }}
+          _hover={{ color: 'brand.550' }}
           onClick={executeProcessScroll}
         >
-          Process Flow
+          Explore Events
         </Box>
         <Box
           mr={['1', '4', '4', '8', '12']}
           fontWeight='bold'
           cursor='pointer'
-          _hover={{ color: 'blue.400' }}
+          _hover={{ color: 'brand.550' }}
           onClick={executeAboutScroll}
         >
           About Us
         </Box>
-        <Box
+        {/* <Box
           mr={['1', '4', '4', '8', '12']}
           fontWeight='bold'
           cursor='pointer'
-          _hover={{ color: 'blue.400' }}
+          _hover={{ color: 'brand.550' }}
           onClick={executeFooterScroll}
         >
           Contact Us
-        </Box>
+        </Box> */}
         {true ? (
           <Button
             onClick={async () => {
@@ -104,8 +104,8 @@ const NavBar = ({
               justifyContent: 'center',
             }}
           >
-            <GrGoogle style={{ marginRight: '10px' }} />
-            Login
+            <IoWallet style={{ marginRight: '10px' }} />
+            Connect Wallet
           </Button>
         ) : (
           <Button
@@ -145,18 +145,18 @@ const NavBar = ({
             <Box
               mb='3'
               cursor='pointer'
-              _hover={{ color: 'blue.400' }}
+              _hover={{ color: 'brand.550' }}
               onClick={() => {
                 executeProcessScroll();
                 onClose();
               }}
             >
-              Process Flow
+              Explore Events
             </Box>
             <Box
               mb='3'
               cursor='pointer'
-              _hover={{ color: 'blue.400' }}
+              _hover={{ color: 'brand.550' }}
               onClick={() => {
                 executeAboutScroll();
                 onClose();
@@ -164,17 +164,17 @@ const NavBar = ({
             >
               About Us
             </Box>
-            <Box
+            {/* <Box
               mb='4'
               cursor='pointer'
-              _hover={{ color: 'blue.400' }}
+              _hover={{ color: 'brand.550' }}
               onClick={() => {
                 executeFooterScroll();
                 onClose();
               }}
             >
               Contact Us
-            </Box>
+            </Box> */}
             {true ? (
               <Button
                 onClick={async () => {
@@ -190,7 +190,7 @@ const NavBar = ({
                   justifyContent: 'center',
                 }}
               >
-                <GrGoogle style={{ marginRight: '10px' }} />
+                <IoWallet style={{ marginRight: '10px' }} />
                 Login
               </Button>
             ) : (

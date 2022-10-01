@@ -18,7 +18,7 @@ const FutureScopeCard = ({ heading, content }) => {
         w='fit-content'
         p='2'
         fontSize='xs'
-        color='brand.500'
+        color='brand.600'
         borderRadius='md'
       >
         COMING SOON
@@ -27,7 +27,7 @@ const FutureScopeCard = ({ heading, content }) => {
         fontSize={['lg', 'lg', 'xl']}
         fontWeight='bold'
         my={['4', '5', '6']}
-        color='brand.500'
+        color='brand.600'
       >
         {heading}
       </Box>
