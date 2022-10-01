@@ -1,6 +1,6 @@
-import { Box, Button, Flex, Image, Text } from '@chakra-ui/react';
+import { Box, Button, Flex, Text } from '@chakra-ui/react';
 
-const Event = () => {
+const Event = ({ id }) => {
   const isOneDay = false;
 
   return (
@@ -17,8 +17,8 @@ const Event = () => {
           position='absolute'
           direction='column'
           align='center'
-          bottom={isOneDay ? '-30px' : '-48px'}
-          left='52'
+          bottom={isOneDay ? '-30px' : '-46px'}
+          left='10%'
           bg='#FFFFFFD9'
           pt='4'
           px='4'
@@ -39,7 +39,7 @@ const Event = () => {
           {!isOneDay && <Text fontSize='sm'>onwards</Text>}
         </Flex>
       </Box>
-      <Flex direction='column' mx='52' mt={isOneDay ? '12' : '14'} mb='10'>
+      <Flex direction='column' mx='10%' mt={isOneDay ? '12' : '16'} mb='10'>
         <Flex align='start' justify='space-between'>
           <Box>
             <Text fontSize='4xl' fontWeight='600'>
