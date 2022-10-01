@@ -10,17 +10,15 @@ const Profile = ({ onClick }) => {
   );
 
   return (
-    <Menu flip>
+    <Menu placement='bottom-end' gutter='4'>
       <MenuButton>
         <Avatar name='User' bg='brand.400' src={randomAvatar} />
       </MenuButton>
-      <MenuList>
-        <MenuItem onClick={onClick} icon={<MdLogout />}>
-          <span>Logout</span>
+      <MenuList minW='160px'>
+        <MenuItem icon={<MdLogout />} onClick={onClick}>
+          Logout
         </MenuItem>
-        <MenuItem icon={<MdSettings />}>
-          <span>Settings</span>
-        </MenuItem>
+        <MenuItem icon={<MdSettings />}>Settings</MenuItem>
       </MenuList>
     </Menu>
   );
