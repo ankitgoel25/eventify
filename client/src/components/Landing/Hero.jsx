@@ -5,7 +5,7 @@ const Hero = () => {
   return (
     <Flex
       mx={['8', '12', '20', '36', '52']}
-      mt={['4', '4', '4', '2', '8']}
+      mt={['4', '4', '4', '2', '14']}
       mb={['4', '4', '4', '2', '20']}
       justifyContent='space-between'
       flexDirection={['column', 'column', 'row']}
@@ -26,17 +26,16 @@ const Hero = () => {
         </Box>
         <Flex
           fontSize={['small', 'md', 'lg', 'xl']}
-          mt={['8', '10', '12', '16']}
+          mt={['8', '10', '12', '10']}
           textAlign={['center', 'center', 'left']}
         >
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum
-          repellendus fugiat obcaecati nesciunt delectus autem. Excepturi,
-          error!
+          Lorem ipsum, dolor sit amet consectetur adipisicing elitiunt delectus
+          autem. Excepturi, error!
         </Flex>
 
         <Button
           w='fit-content'
-          mt={['8', '10', '12', '12', '12']}
+          mt={['8', '10', '12', '12', '14']}
           fontSize={['small', 'lg']}
           // onClick={() => navigate('/anonymously')}
         >
