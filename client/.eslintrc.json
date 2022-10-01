@@ -1,8 +1,10 @@
 {
-  "extends": ["airbnb", "next/core-web-vitals", "plugin:prettier/recommended"],
-  "env": {
-    "jest": true
-  },
+  "extends": [
+    "airbnb",
+    "next/core-web-vitals",
+    "plugin:prettier/recommended",
+    "plugin:@next/next/recommended"
+  ],
   "plugins": ["simple-import-sort"],
   "rules": {
     "jsx-a11y/label-has-associated-control": "off",
