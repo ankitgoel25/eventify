@@ -1,7 +1,6 @@
+import { useState, useRef, useEffect } from 'react';
 import {
   Box,
-  Heading,
-  Center,
   Flex,
   FormControl,
   FormLabel,
@@ -13,21 +12,43 @@ import {
 import ImageUploader from './ImageUploder';
 
 const CreateEventForm = () => {
+//   const [image, setImage] = useState(null);
+//   const [formFields, setFormFields] = useState({
+//     eventName,
+//     community,
+//     fromDate,
+//     toDate,
+//     fees,
+//     description
+//   })
+
+//   const address = useAddress();
+//   const eventContract = useContract('0x5FbDB2315678afecb367f032d93F642f64180aa3');
+
+//   const handleFormFields = (e) => {
+//     setFormFields((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+//   }
+
+//   const onSubmit= async()=>{
+//     const eventTimeStamp = Math.floor(toDate)
+//     const eventId = await eventContract.contract.function.createNewEvent(eventTimeStamp, formFields.fees, formFields.maxCapacity, formFields.eventName);
+//   }
+
   return (
     <Box>
       <Flex>
         <Box borderRadius='5px' w='48%' flexShrink={0} rounded='md' mr={10}>
           <FormControl mb={6} isRequired>
-            <FormLabel fontSize={18} htmlFor='EventName'>
+            <FormLabel fontSize={18} htmlFor='eventName'>
               Event Name
             </FormLabel>
-            <Input id='EventName' placeholder='Event Name' boxShadow='base' />
+            <Input id='eventName' placeholder='Event Name' boxShadow='base' />
           </FormControl>
           <FormControl mb={6} isRequired>
-            <FormLabel fontSize={18} htmlFor='Community'>
+            <FormLabel fontSize={18} htmlFor='community'>
               Organizing Community
             </FormLabel>
-            <Input id='Community' placeholder='Event Name' boxShadow='base' />
+            <Input id='community' placeholder='Organization Name' boxShadow='base'  />
           </FormControl>
         </Box>
         <Box borderRadius='5px' w='48%' flexShrink={0} rounded='md'>
@@ -51,8 +72,8 @@ const CreateEventForm = () => {
               <Input
                 type='date'
                 id='fromDate'
-                placeholder='Event Name'
                 boxShadow='base'
+                
               />
             </FormControl>
             <FormControl mb={6} w='47%' isRequired>
@@ -60,8 +81,8 @@ const CreateEventForm = () => {
               <Input
                 type='date'
                 id='toDate'
-                placeholder='Event Name'
                 boxShadow='base'
+                
               />
             </FormControl>
           </Flex>
@@ -76,6 +97,7 @@ const CreateEventForm = () => {
               placeholder='Enter the secure deposit'
               boxShadow='base'
               type='number'
+              
             />
           </FormControl>
         </Box>
@@ -92,6 +114,7 @@ const CreateEventForm = () => {
             size='lg'
             rows={4}
             isRequired
+            
           />
         </FormControl>
       </Box>
