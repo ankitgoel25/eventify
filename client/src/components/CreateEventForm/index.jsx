@@ -35,7 +35,6 @@ const CreateEventForm = () => {
             <FormLabel fontSize={18} htmlFor='uploadImage'>
               Upload Image
             </FormLabel>
-            {/* <ImageUploader image={image} setImage={setImage} /> */}
             <ImageUploader />
           </FormControl>
         </Box>
@@ -49,7 +48,7 @@ const CreateEventForm = () => {
             <FormControl mb={6} w='47%' isRequired>
               <FormHelperText mb={2}>From</FormHelperText>
               <Input
-                type='date'
+                type='datetime-local'
                 id='fromDate'
                 placeholder='Event Name'
                 boxShadow='base'
@@ -58,7 +57,7 @@ const CreateEventForm = () => {
             <FormControl mb={6} w='47%' isRequired>
               <FormHelperText mb={2}>To</FormHelperText>
               <Input
-                type='date'
+                type='datetime-local'
                 id='toDate'
                 placeholder='Event Name'
                 boxShadow='base'
