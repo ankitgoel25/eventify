@@ -33,10 +33,10 @@ const Footer = ({ footerRef }) => {
           color='brand.100'
         >
           <Flex fontSize={['md', 'lg']} fontWeight='semibold' m='2'>
-            EnormoQB
+            Eventify
           </Flex>
           <Flex fontSize={['sm', 'md']} textAlign='center'>
-            Revolutionizing Examination Systems
+            Revolutionizing Event Management System
           </Flex>
           <Flex
             mt={['0', '2', '4']}
@@ -91,7 +91,7 @@ const Footer = ({ footerRef }) => {
         p='2'
         justifyContent='center'
       >
-        Copyright © 2022 | EnormoQB
+        Copyright © 2022 | Eventify
       </Flex>
     </Flex>
   );
