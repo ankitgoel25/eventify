@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   Box,
   Button,
@@ -14,6 +15,27 @@ import { useAddress } from '@thirdweb-dev/react';
 
 const RegisterForm = () => {
   const address = useAddress();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phnNo, setPhnNo] = useState('');
+  const [gender, setGender] = useState('');
+  const [bio, setBio] = useState('');
+  const [ques, setQues] = useState('');
+  const [donate, setDonate] = useState(false);
+
+  const regData = {
+    name,
+    email,
+    phnNo,
+    gender,
+    bio,
+    ques,
+    donate,
+  };
+
+  const handleSubmit = () => {
+    console.log(regData);
+  };
 
   return (
     <Box>
@@ -33,7 +55,12 @@ const RegisterForm = () => {
                 <FormLabel fontSize={18} htmlFor='fullName'>
                   Full Name
                 </FormLabel>
-                <Input id='fullName' placeholder='Full Name' boxShadow='base' />
+                <Input
+                  id='fullName'
+                  placeholder='Full Name'
+                  boxShadow='base'
+                  onChange={(e) => setName(e.target.value)}
+                />
               </FormControl>
               <FormControl w='48%' mb={6} isRequired>
                 <FormLabel fontSize={18} htmlFor='email'>
@@ -43,6 +70,7 @@ const RegisterForm = () => {
                   id='email'
                   placeholder='Email Address'
                   boxShadow='base'
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </FormControl>
             </Flex>
@@ -55,17 +83,22 @@ const RegisterForm = () => {
                   id='contact'
                   placeholder='Enter your contact number'
                   boxShadow='base'
+                  onChange={(e) => setPhnNo(e.target.value)}
                 />
               </FormControl>
               <FormControl w='48%' mb={6} isRequired>
                 <FormLabel fontSize={18} htmlFor='contact'>
                   Gender
                 </FormLabel>
-                <Select placeholder='Select option' boxShadow='base'>
-                  <option value='option1'>Male</option>
-                  <option value='option2'>Female</option>
-                  <option value='option3'>Others</option>
-                  <option value='option3'>Prefer not to say</option>
+                <Select
+                  placeholder='Select option'
+                  boxShadow='base'
+                  onChange={(e) => setGender(e.target.value)}
+                >
+                  <option value='Male'>Male</option>
+                  <option value='Female'>Female</option>
+                  <option value='Others'>Others</option>
+                  <option value='Prefer not to say'>Prefer not to say</option>
                 </Select>
               </FormControl>
             </Flex>
@@ -79,6 +112,7 @@ const RegisterForm = () => {
                 id='about'
                 rows={3}
                 isRequired
+                onChange={(e) => setBio(e.target.value)}
               />
             </FormControl>
             <FormControl mb={6} isRequired>
@@ -91,15 +125,18 @@ const RegisterForm = () => {
                 id='doubts'
                 rows={3}
                 isRequired
+                onChange={(e) => setQues(e.target.value)}
               />
             </FormControl>
             <Box>
-              <Checkbox>
+              <Checkbox onChange={(e) => setDonate(e.target.checked)}>
                 Do you wish to donate your security amount to a NGO if you&nbsp;
                 <b>show up</b> at the event?
               </Checkbox>
             </Box>
-            <Button mt='4'>Submit</Button>
+            <Button mt='4' onClick={handleSubmit}>
+              Submit
+            </Button>
           </Box>
         </>
       )}
