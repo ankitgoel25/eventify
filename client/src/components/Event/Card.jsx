@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { MdOutlineAccessTime, MdOutlineLocationOn } from 'react-icons/md';
 import CheckInModal from './CheckInModal';
 
-const EventCard = ({ data, present }) => {
+const EventCard = ({ id, data, present, checkIn }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -11,7 +11,7 @@ const EventCard = ({ data, present }) => {
       position='relative'
       w='31%'
       h='380px'
-      mr='auto'
+      mr={id % 3 == 0 ? '0' : 'auto'}
       mb='28px'
       bgImage={data.pic}
       bgSize='cover'
@@ -62,10 +62,14 @@ const EventCard = ({ data, present }) => {
           </Flex>
         ) : (
           <Flex align='center' mt='18px'>
-            <Button mr='3' onClick={onOpen}>
-              Check In
-            </Button>
-            <CheckInModal isOpen={isOpen} onClose={onClose} />
+            {checkIn && (
+              <>
+                <Button mr='3' onClick={onOpen}>
+                  Check In
+                </Button>
+                <CheckInModal isOpen={isOpen} onClose={onClose} />
+              </>
+            )}
             <Link href={`/event/${data.id}`} passHref>
               <a>
                 <Button
