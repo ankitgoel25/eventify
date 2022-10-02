@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import * as firestore from 'firebase/firestore';
 import { collection, doc, setDoc } from 'firebase/firestore';
 import { db } from '../../utils/firebase';
-import { useAddress, useContract, useContractWrite } from '@thirdweb-dev/react';
+import { useAddress } from '@thirdweb-dev/react';
 import connectContract from '../../utils/connectContract';
 import moment from 'moment';
 import {
@@ -14,23 +14,32 @@ import {
   Input,
   Textarea,
   Button,
+  Select,
 } from '@chakra-ui/react';
 import ImageUploader from './ImageUploder';
 import { ethers } from 'ethers';
 
 const CreateEventForm = () => {
+  const address = useAddress();
   const [image, setImage] = useState(null);
   const [eventName, setEventName] = useState('');
   const [community, setCommunity] = useState('');
-  const [fromDate, setFormDate] = useState();
-  const [toDate, setToDate] = useState();
+  const [fromDate, setFormDate] = useState('');
+  const [toDate, setToDate] = useState('');
   const [fees, setFees] = useState(0);
   const [venue, setVenue] = useState('');
   const [location, setLocation] = useState('');
+  const [capacity, setCapacity] = useState(0);
+  const [ngo, setNGO] = useState({
+    value: 'Ahvaan Trust',
+    label: 'Ahvaan Trust',
+  });
   const [description, setDescription] = useState('');
 
   const onSubmit = async () => {
-    const eventTimeStamp = moment(toDate).unix();
+    // const eventTimeStamp = moment(toDate).unix();
+    let eventDateAndTime = new Date(toDate);
+    let eventTimestamp = eventDateAndTime.getTime();
     const event = {
       eventName,
       community,
@@ -40,10 +49,11 @@ const CreateEventForm = () => {
       venue,
       location,
       description,
-      timestamp: eventTimeStamp,
+      timestamp: eventTimestamp,
     };
-    console.log(event);
-    await setDoc(doc(db, 'Events', 'wooooooooo'), {
+    const eventId = await createEvent(event);
+    console.log(eventId);
+    await setDoc(doc(db, 'Events', '4555'), {
       eventName,
       community,
       startDate: fromDate,
@@ -54,9 +64,8 @@ const CreateEventForm = () => {
       description,
       confirmedRSV: [],
       claimedRSVP: [],
+      eventOwner: address,
     });
-
-    createEvent(event);
   };
 
   const createEvent = async (event) => {
@@ -70,12 +79,13 @@ const CreateEventForm = () => {
           event.timestamp,
           deposit,
           10,
-          '12234435676',
+          event.eventName,
           { gasLimit: 900000 },
         );
         console.log('Minting...', txn.hash);
         let wait = await txn.wait();
         console.log('Minted -- ', txn.hash);
+        // console.log(wait);
         console.log(wait);
       } else {
         console.log('Error getting contract.');
@@ -192,6 +202,34 @@ const CreateEventForm = () => {
               value={location}
               onChange={(e) => setLocation(e.target.value)}
             />
+          </FormControl>
+        </Box>
+      </Flex>
+      <Flex align='flex-end'>
+        <Box borderRadius='5px' w='48%' flexShrink={0} rounded='md' mr={10}>
+          <FormControl mb={6} isRequired>
+            <FormLabel fontSize={18} mb={0}>
+              Max Capacity
+            </FormLabel>
+            <Input
+              id='capacity'
+              placeholder='Event max capacity of participants'
+              boxShadow='base'
+              type='number'
+              value={capacity}
+              onChange={(e) => setCapacity(e.target.value)}
+            />
+          </FormControl>
+        </Box>
+        <Box borderRadius='5px' w='48%' flexShrink={0} rounded='md'>
+          <FormControl mb={6} isRequired>
+            <FormLabel fontSize={18} htmlFor='ngo'>
+              NGO
+            </FormLabel>
+            <Select placeholder='Select NGO'>
+              <option value='Ahimsa Foundation'>Ahimsa Foundation</option>
+              <option value='Ahvaan Trust'>Ahvaan Trust</option>
+            </Select>
           </FormControl>
         </Box>
       </Flex>
