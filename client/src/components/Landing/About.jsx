@@ -9,6 +9,7 @@ const About = ({ aboutRef }) => (
     ref={aboutRef}
     pos='relative'
     mt={['8', null]}
+    mb='20'
   >
     <Flex
       flexDirection='column'
@@ -17,17 +18,12 @@ const About = ({ aboutRef }) => (
       className='slanted'
       h={['xl', '2xl', '3xl', '4xl']}
     >
-      {/* <Image
-        src={NextGIF}
-        w={['12%', '12%', '6%']}
-        mt={['14', '16', '24']}
-        borderRadius='100%'
-      /> */}
       <Box
         fontSize={['xl', 'xl', '2xl']}
         fontWeight='bold'
         color='brand.100'
-        my='4'
+        mt='20'
+        mb='10'
       >
         About Us
       </Box>
@@ -35,7 +31,7 @@ const About = ({ aboutRef }) => (
         color='brand.200'
         w={['80%', '80%', '60%', '60%', '40%']}
         textAlign='center'
-        mb='6'
+        mb='2'
         fontSize={['sm', 'md', 'lg']}
       >
         <span className='highlightSecond'>EnormoQB</span> is a crowdsourced
@@ -53,7 +49,7 @@ const About = ({ aboutRef }) => (
       bgColor='blue.100'
       borderRadius='lg'
       position='absolute'
-      top={['25rem', '28rem', '30rem']}
+      top={['25rem', '24rem', '24rem']}
       px='6'
       pb='6'
     >
@@ -62,11 +58,11 @@ const About = ({ aboutRef }) => (
         <Circle size={['3', '3', '4']} bgColor='brand.300' mx='1' />
         <Circle size={['3', '3', '4']} bgColor='brand.300' mx='1' />
       </Flex>
-      {/* <Image
-        src='/images/screenshot.png'
+      <Image
+        src='/images/landingImage.png'
         alt='Sample Dashboard'
         borderRadius='10'
-      /> */}
+      />
     </Flex>
   </Flex>
 );
