@@ -39,7 +39,6 @@ const Hero = () => {
               w='fit-content'
               mt={['8', '10', '12', '12', '14']}
               fontSize={['small', 'lg']}
-              // onClick={() => navigate('/anonymously')}
             >
               <MdOutlineExplore size='24px' style={{ marginRight: '10px' }} />
               Explore Events

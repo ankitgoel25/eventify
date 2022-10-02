@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useMetamask, useDisconnect, useAddress } from '@thirdweb-dev/react'
 import Link from 'next/link';
 import {
   IconButton,
@@ -23,7 +24,6 @@ import { IoChevronDown, IoWallet } from 'react-icons/io5';
 import Logo from './Logo';
 import TopBorder from '../Landing/TopBorder';
 import Profile from './Profile';
-import { useMetamask, useDisconnect, useAddress } from '@thirdweb-dev/react';
 
 const Navbar = () => {
   const [sticky, setSticky] = useState('');
@@ -71,33 +71,35 @@ const Navbar = () => {
               </Text>
             </a>
           </Link>
-          <Menu placement='bottom-end'>
-            <MenuButton>
-              <Flex
-                ml={['1', '4', '4', '8', '12']}
-                fontWeight='bold'
-                cursor='pointer'
-                _hover={{ color: 'brand.550' }}
-                align='center'
-                fontSize='18px'
-              >
-                <span>Events</span>
-                <IoChevronDown style={{ marginLeft: 5 }} />
-              </Flex>
-            </MenuButton>
-            <MenuList minW='160px'>
-              <Link href='/my-events' passHref>
-                <a>
-                  <MenuItem>My Events</MenuItem>
-                </a>
-              </Link>
-              <Link href='/my-rsvps' passHref>
-                <a>
-                  <MenuItem>My RSVPs</MenuItem>
-                </a>
-              </Link>
-            </MenuList>
-          </Menu>
+          {address && (
+            <Menu placement='bottom-end'>
+              <MenuButton>
+                <Flex
+                  ml={['1', '4', '4', '8', '12']}
+                  fontWeight='bold'
+                  cursor='pointer'
+                  _hover={{ color: 'brand.550' }}
+                  align='center'
+                  fontSize='18px'
+                >
+                  <span>Events</span>
+                  <IoChevronDown style={{ marginLeft: 5 }} />
+                </Flex>
+              </MenuButton>
+              <MenuList minW='160px'>
+                <Link href='/my-events' passHref>
+                  <a>
+                    <MenuItem>My Events</MenuItem>
+                  </a>
+                </Link>
+                <Link href='/my-rsvps' passHref>
+                  <a>
+                    <MenuItem>My RSVPs</MenuItem>
+                  </a>
+                </Link>
+              </MenuList>
+            </Menu>
+          )}
 
           {!address ? (
             <Button
@@ -136,32 +138,12 @@ const Navbar = () => {
               color='brand.500'
               fontSize={['lg', 'lg', 'xl']}
             >
-              EnormoQB
+              Eventify
             </DrawerHeader>
             <DrawerBody fontSize={['sm', 'md', 'md']}>
               <Box mb='3' cursor='pointer' _hover={{ color: 'brand.550' }}>
                 Explore Events
               </Box>
-              <Box mb='3' cursor='pointer' _hover={{ color: 'brand.550' }}>
-                About Us
-              </Box>
-              {true ? (
-                <Button
-                  onClick={() => {}}
-                  styles={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <IoWallet style={{ marginRight: '10px' }} />
-                  Login
-                </Button>
-              ) : (
-                <Button onClick={() => {}} isLoading={isFetching}>
-                  Dashboard
-                </Button>
-              )}
             </DrawerBody>
           </DrawerContent>
         </Drawer>

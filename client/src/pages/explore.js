@@ -28,8 +28,8 @@ const ExplorePage = () => {
         querySnapshot.forEach((doc) => {
           const newEvent = { ...doc.data(), id: doc.id };
           if (events.length != 0) {
-            setEvents( [...events, newEvent]);
-          }else{
+            setEvents([...events, newEvent]);
+          } else {
             setEvents([newEvent]);
           }
         });
@@ -49,7 +49,7 @@ const ExplorePage = () => {
       </Flex>
       <Flex my='4' justify='center' wrap='wrap'>
         {data.map((e, i) => (
-          <EventCard key={i} data={e} present />
+          <EventCard key={i} id={i + 1} data={e} present />
         ))}
       </Flex>
     </Box>

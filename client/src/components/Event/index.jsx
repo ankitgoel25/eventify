@@ -89,7 +89,7 @@ const Event = ({ id }) => {
             25 Oct 2022, 10am - 26 Oct 2022 9pm
           </Text>
         </Flex>
-        <Box mt='4' gap='10px' ref={registerRef}>
+        <Box mt='4' mb='4' gap='10px' ref={registerRef}>
           <Text fontSize='lg' fontWeight='600'>
             Having any doubts?
           </Text>
@@ -97,6 +97,16 @@ const Event = ({ id }) => {
             Contact the organiser at event@gmail.com
           </Text>
         </Box>
+        <iframe
+          width='550'
+          height='350'
+          id='gmap_canvas'
+          src='https://maps.google.com/maps?q=vips%20&t=&z=13&ie=UTF8&iwloc=&output=embed'
+          frameborder='0'
+          scrolling='no'
+          marginheight='0'
+          marginwidth='0'
+        />
         <Divider my='8' />
         <RegisterForm />
       </Flex>
