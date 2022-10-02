@@ -34,19 +34,20 @@ const About = ({ aboutRef }) => (
         mb='2'
         fontSize={['sm', 'md', 'lg']}
       >
-        <span className='highlightSecond'>EnormoQB</span> is a crowdsourced
-        question bank of over 5000+ objective type board questions. You can
-        anonymously contribute questions here and also generate numerous
-        question papers with the ease of just one-click. We target to bring
-        together unique and quality questions while challenging the traditional
-        paper setting systems by automating the whole process.
+        <span className='highlightSecond'>Eventify</span> is a platform for both
+        organizers and attendees. It is providing assuring registrations to the
+        organizers and bringing genuine crowd to the events. It is also having a
+        social impact as it is donating to the NGOs and helping them. We target
+        to solve the most common problem faced by the organizers and both the
+        organizers and attendees are getting to be part of something that is
+        helping those who need the most help.
       </Box>
     </Flex>
 
     <Flex
       flexDirection='column'
       width={['80%', '80%', '60%', '60%', '60%']}
-      bgColor='blue.100'
+      bgColor='brand.500'
       borderRadius='lg'
       position='absolute'
       top={['25rem', '24rem', '24rem']}
@@ -54,14 +55,15 @@ const About = ({ aboutRef }) => (
       pb='6'
     >
       <Flex p={['2', '2', '4']}>
-        <Circle size={['3', '3', '4']} bgColor='brand.300' mx='1' />
-        <Circle size={['3', '3', '4']} bgColor='brand.300' mx='1' />
-        <Circle size={['3', '3', '4']} bgColor='brand.300' mx='1' />
+        <Circle size={['3', '3', '4']} bgColor='brand.600' mx='1' />
+        <Circle size={['3', '3', '4']} bgColor='brand.200' mx='1' />
+        <Circle size={['3', '3', '4']} bgColor='brand.100' mx='1' />
       </Flex>
       <Image
         src='/images/landingImage.png'
         alt='Sample Dashboard'
         borderRadius='10'
+        boxShadow='md'
       />
     </Flex>
   </Flex>
