@@ -1,8 +1,11 @@
-import { Box, Button, Flex, Text } from '@chakra-ui/react';
+import { Box, Button, Flex, Text, useDisclosure } from '@chakra-ui/react';
 import Link from 'next/link';
 import { MdOutlineAccessTime, MdOutlineLocationOn } from 'react-icons/md';
+import CheckInModal from './CheckInModal';
 
 const EventCard = ({ data, present }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <Box
       position='relative'
@@ -58,11 +61,27 @@ const EventCard = ({ data, present }) => {
             </Link>
           </Flex>
         ) : (
-          <Link href={`/event/${data.id}`} passHref>
-            <a>
-              <Button mt='18px'>View Details</Button>
-            </a>
-          </Link>
+          <Flex align='center' mt='18px'>
+            <Button mr='3' onClick={onOpen}>
+              Check In
+            </Button>
+            <CheckInModal isOpen={isOpen} onClose={onClose} />
+            <Link href={`/event/${data.id}`} passHref>
+              <a>
+                <Button
+                  border='1px solid #0B0014'
+                  bg='transparent'
+                  color='brand.600'
+                  _hover={{
+                    borderColor: 'transparent',
+                    background: 'brand.200',
+                  }}
+                >
+                  View Details
+                </Button>
+              </a>
+            </Link>
+          </Flex>
         )}
       </Box>
     </Box>
