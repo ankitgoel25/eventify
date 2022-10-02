@@ -17,6 +17,7 @@ import {
 } from '@chakra-ui/react';
 import ImageUploader from './ImageUploder';
 import { ethers } from 'ethers';
+import storeFiles from '../../utils/web3storage';
 
 const CreateEventForm = () => {
   const [image, setImage] = useState(null);
@@ -30,6 +31,7 @@ const CreateEventForm = () => {
   const [description, setDescription] = useState('');
 
   const onSubmit = async () => {
+    const imageCID = await storeFiles(image);
     const eventTimeStamp = moment(toDate).unix();
     const event = {
       eventName,
@@ -41,17 +43,11 @@ const CreateEventForm = () => {
       location,
       description,
       timestamp: eventTimeStamp,
+      imageCID,
     };
     console.log(event);
-    await setDoc(doc(db, 'Events', 'wooooooooo'), {
-      eventName,
-      community,
-      startDate: fromDate,
-      endDate: toDate,
-      fees,
-      venue,
-      location,
-      description,
+    await setDoc(doc(db, 'Events', imageCID), {
+      ...event,
       confirmedRSV: [],
       claimedRSVP: [],
     });
@@ -119,7 +115,7 @@ const CreateEventForm = () => {
             <FormLabel fontSize={18} htmlFor='uploadImage'>
               Upload Image
             </FormLabel>
-            <ImageUploader />
+            <ImageUploader image={image} setImage={setImage} />
           </FormControl>
         </Box>
       </Flex>
