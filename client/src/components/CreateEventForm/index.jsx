@@ -1,4 +1,10 @@
 import { useState, useRef, useEffect } from 'react';
+import * as firestore from 'firebase/firestore';
+import { collection, doc, setDoc } from 'firebase/firestore';
+import { db } from '../../utils/firebase';
+import { useAddress, useContract, useContractWrite } from '@thirdweb-dev/react';
+import connectContract from '../../utils/connectContract';
+import moment from 'moment';
 import {
   Box,
   Flex,
@@ -10,30 +16,74 @@ import {
   Button,
 } from '@chakra-ui/react';
 import ImageUploader from './ImageUploder';
+import { ethers } from 'ethers';
 
 const CreateEventForm = () => {
-//   const [image, setImage] = useState(null);
-//   const [formFields, setFormFields] = useState({
-//     eventName,
-//     community,
-//     fromDate,
-//     toDate,
-//     fees,
-//     description
-//   })
+  const [image, setImage] = useState(null);
+  const [eventName, setEventName] = useState('');
+  const [community, setCommunity] = useState('');
+  const [fromDate, setFormDate] = useState();
+  const [toDate, setToDate] = useState();
+  const [fees, setFees] = useState(0);
+  const [venue, setVenue] = useState('');
+  const [location, setLocation] = useState('');
+  const [description, setDescription] = useState('');
 
-//   const address = useAddress();
-//   const eventContract = useContract('0x5FbDB2315678afecb367f032d93F642f64180aa3');
+  const onSubmit = async () => {
+    const eventTimeStamp = moment(toDate).unix();
+    const event = {
+      eventName,
+      community,
+      startDate: fromDate,
+      endDate: toDate,
+      fees,
+      venue,
+      location,
+      description,
+      timestamp: eventTimeStamp,
+    };
+    console.log(event);
+    await setDoc(doc(db, 'Events', 'wooooooooo'), {
+      eventName,
+      community,
+      startDate: fromDate,
+      endDate: toDate,
+      fees,
+      venue,
+      location,
+      description,
+      confirmedRSV: [],
+      claimedRSVP: [],
+    });
 
-//   const handleFormFields = (e) => {
-//     setFormFields((prev) => ({ ...prev, [e.target.id]: e.target.value }));
-//   }
+    createEvent(event);
+  };
 
-  const onSubmit= async()=>{
-    // const eventTimeStamp = Math.floor(toDate)
-    // const eventId = await eventContract.contract.function.createNewEvent(eventTimeStamp, formFields.fees, formFields.maxCapacity, formFields.eventName);
-    
+  const createEvent = async (event) => {
+    try {
+      const eventsContract = connectContract();
+
+      if (eventsContract) {
+        let deposit = ethers.utils.parseEther(event.fees);
+
+        const txn = await eventsContract.createNewEvent(
+          event.timestamp,
+          deposit,
+          10,
+          '12234435676',
+          { gasLimit: 900000 },
+        );
+        console.log('Minting...', txn.hash);
+        let wait = await txn.wait();
+        console.log('Minted -- ', txn.hash);
+        console.log(wait);
+      } else {
+        console.log('Error getting contract.');
+      }
+    } catch (error) {
+      console.log(error);
     }
+  };
 
   return (
     <Box>
@@ -43,7 +93,13 @@ const CreateEventForm = () => {
             <FormLabel fontSize={18} htmlFor='eventName'>
               Event Name
             </FormLabel>
-            <Input id='eventName' placeholder='Event Name' boxShadow='base' />
+            <Input
+              id='eventName'
+              placeholder='Event Name'
+              boxShadow='base'
+              value={eventName}
+              onChange={(e) => setEventName(e.target.value)}
+            />
           </FormControl>
           <FormControl mb={6} isRequired>
             <FormLabel fontSize={18} htmlFor='community'>
@@ -53,6 +109,8 @@ const CreateEventForm = () => {
               id='Community'
               placeholder='Name Of Organizers'
               boxShadow='base'
+              value={community}
+              onChange={(e) => setCommunity(e.target.value)}
             />
           </FormControl>
         </Box>
@@ -77,7 +135,7 @@ const CreateEventForm = () => {
                 type='datetime-local'
                 id='fromDate'
                 boxShadow='base'
-                
+                onChange={(val) => setFormDate(val.target.value)}
               />
             </FormControl>
             <FormControl mb={6} w='47%' isRequired>
@@ -86,7 +144,7 @@ const CreateEventForm = () => {
                 type='datetime-local'
                 id='toDate'
                 boxShadow='base'
-                
+                onChange={(val) => setToDate(val.target.value)}
               />
             </FormControl>
           </Flex>
@@ -101,6 +159,8 @@ const CreateEventForm = () => {
               placeholder='Enter the secure deposit amount'
               boxShadow='base'
               type='number'
+              value={fees}
+              onChange={(e) => setFees(e.target.value)}
             />
           </FormControl>
         </Box>
@@ -111,7 +171,13 @@ const CreateEventForm = () => {
             <FormLabel fontSize={18} mb={0}>
               Venue
             </FormLabel>
-            <Input id='EventName' placeholder='Event Venue' boxShadow='base' />
+            <Input
+              id='venue'
+              placeholder='Event Venue'
+              boxShadow='base'
+              value={venue}
+              onChange={(e) => setVenue(e.target.value)}
+            />
           </FormControl>
         </Box>
         <Box borderRadius='5px' w='48%' flexShrink={0} rounded='md'>
@@ -120,11 +186,11 @@ const CreateEventForm = () => {
               Location Url
             </FormLabel>
             <Input
-              id='fees'
+              id='location'
               placeholder='Google Maps link of the venue'
               boxShadow='base'
-              type='number'
-              
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
             />
           </FormControl>
         </Box>
@@ -141,12 +207,13 @@ const CreateEventForm = () => {
             size='lg'
             rows={4}
             isRequired
-            
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
           />
         </FormControl>
       </Box>
       <Box w='100%' display='flex' justifyContent='center'>
-        <Button mt={7} w={200} h={50} mb={6}>
+        <Button mt={7} w={200} h={50} mb={6} onClick={() => onSubmit()}>
           SUBMIT
         </Button>
       </Box>
