@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useMetamask, useDisconnect, useAddress } from '@thirdweb-dev/react'
+import { useMetamask, useDisconnect, useAddress } from '@thirdweb-dev/react';
 import Link from 'next/link';
 import {
   IconButton,
@@ -24,6 +24,7 @@ import { IoChevronDown, IoWallet } from 'react-icons/io5';
 import Logo from './Logo';
 import TopBorder from '../Landing/TopBorder';
 import Profile from './Profile';
+import { MdAdd } from 'react-icons/md';
 
 const Navbar = () => {
   const [sticky, setSticky] = useState('');
@@ -58,10 +59,19 @@ const Navbar = () => {
         boxShadow={sticky ? '0px 19px 14px -17px rgba(0,0,0,0.1)' : 'none'}
       >
         <Logo />
+
         <Flex alignItems='center' display={['none', 'none', 'flex']} ml='auto'>
+          {address && (
+            <Link href='/create' passHref>
+              <a>
+                <Button leftIcon={<MdAdd />}>Create Event</Button>
+              </a>
+            </Link>
+          )}
           <Link href='/explore' passHref>
             <a>
               <Text
+                ml={['1', '4', '4', '8', '12']}
                 fontWeight='bold'
                 cursor='pointer'
                 fontSize='18px'
