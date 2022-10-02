@@ -14,14 +14,17 @@ import {
   Input,
   Textarea,
   Button,
+  Spinner,
   Select,
 } from '@chakra-ui/react';
 import ImageUploader from './ImageUploder';
 import { ethers } from 'ethers';
+import storeFiles from '../../utils/web3storage';
 
 const CreateEventForm = () => {
   const address = useAddress();
   const [image, setImage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [eventName, setEventName] = useState('');
   const [community, setCommunity] = useState('');
   const [fromDate, setFormDate] = useState('');
@@ -37,35 +40,35 @@ const CreateEventForm = () => {
   const [description, setDescription] = useState('');
 
   const onSubmit = async () => {
-    // const eventTimeStamp = moment(toDate).unix();
-    let eventDateAndTime = new Date(toDate);
-    let eventTimestamp = eventDateAndTime.getTime();
-    const event = {
-      eventName,
-      community,
-      startDate: fromDate,
-      endDate: toDate,
-      fees,
-      venue,
-      location,
-      description,
-      timestamp: eventTimestamp,
-    };
-    const eventId = await createEvent(event);
-    console.log(eventId);
-    await setDoc(doc(db, 'Events', '4555'), {
-      eventName,
-      community,
-      startDate: fromDate,
-      endDate: toDate,
-      fees,
-      venue,
-      location,
-      description,
-      confirmedRSV: [],
-      claimedRSVP: [],
-      eventOwner: address,
-    });
+    try {
+      setIsLoading(true);
+      const imageCID = await storeFiles(image);
+      const eventTimeStamp = moment(toDate).unix();
+      const event = {
+        eventName,
+        community,
+        startDate: fromDate,
+        endDate: toDate,
+        fees,
+        venue,
+        location,
+        description,
+        timestamp: eventTimeStamp,
+        imageCID,
+      };
+      console.log(event);
+      await setDoc(doc(db, 'Events', imageCID), {
+        ...event,
+        confirmedRSV: [],
+        claimedRSVP: [],
+      });
+
+      createEvent(event);
+      setIsLoading(false);
+    } catch (err) {
+      setIsLoading(false);
+      console.log(err);
+    }
   };
 
   const createEvent = async (event) => {
@@ -96,164 +99,163 @@ const CreateEventForm = () => {
   };
 
   return (
-    <Box>
-      <Flex>
-        <Box borderRadius='5px' w='48%' flexShrink={0} rounded='md' mr={10}>
-          <FormControl mb={6} isRequired>
-            <FormLabel fontSize={18} htmlFor='eventName'>
-              Event Name
-            </FormLabel>
-            <Input
-              id='eventName'
-              placeholder='Event Name'
-              boxShadow='base'
-              value={eventName}
-              onChange={(e) => setEventName(e.target.value)}
-            />
-          </FormControl>
-          <FormControl mb={6} isRequired>
-            <FormLabel fontSize={18} htmlFor='community'>
-              Organizing Community
-            </FormLabel>
-            <Input
-              id='Community'
-              placeholder='Name Of Organizers'
-              boxShadow='base'
-              value={community}
-              onChange={(e) => setCommunity(e.target.value)}
-            />
-          </FormControl>
-        </Box>
-        <Box borderRadius='5px' w='48%' flexShrink={0} rounded='md'>
-          <FormControl mb={6}>
-            <FormLabel fontSize={18} htmlFor='uploadImage'>
-              Upload Image
-            </FormLabel>
-            <ImageUploader />
-          </FormControl>
-        </Box>
-      </Flex>
-      <Flex align='flex-end'>
-        <Box borderRadius='5px' w='48%' flexShrink={0} rounded='md' mr={10}>
-          <FormLabel fontSize={18} mb={0}>
-            Select Date
-          </FormLabel>
-          <Flex justify='space-between'>
-            <FormControl mb={6} w='47%' isRequired>
-              <FormHelperText mb={2}>From</FormHelperText>
-              <Input
-                type='datetime-local'
-                id='fromDate'
-                boxShadow='base'
-                onChange={(val) => setFormDate(val.target.value)}
-              />
-            </FormControl>
-            <FormControl mb={6} w='47%' isRequired>
-              <FormHelperText mb={2}>To</FormHelperText>
-              <Input
-                type='datetime-local'
-                id='toDate'
-                boxShadow='base'
-                onChange={(val) => setToDate(val.target.value)}
-              />
-            </FormControl>
-          </Flex>
-        </Box>
-        <Box borderRadius='5px' w='48%' flexShrink={0} rounded='md'>
-          <FormControl mb={6} isRequired>
-            <FormLabel fontSize={18} htmlFor='fees'>
-              Fees
-            </FormLabel>
-            <Input
-              id='fees'
-              placeholder='Enter the secure deposit amount'
-              boxShadow='base'
-              type='number'
-              value={fees}
-              onChange={(e) => setFees(e.target.value)}
-            />
-          </FormControl>
-        </Box>
-      </Flex>
-      <Flex align='flex-end'>
-        <Box borderRadius='5px' w='48%' flexShrink={0} rounded='md' mr={10}>
-          <FormControl mb={6} isRequired>
-            <FormLabel fontSize={18} mb={0}>
-              Venue
-            </FormLabel>
-            <Input
-              id='venue'
-              placeholder='Event Venue'
-              boxShadow='base'
-              value={venue}
-              onChange={(e) => setVenue(e.target.value)}
-            />
-          </FormControl>
-        </Box>
-        <Box borderRadius='5px' w='48%' flexShrink={0} rounded='md'>
-          <FormControl mb={6} isRequired>
-            <FormLabel fontSize={18} htmlFor='fees'>
-              Location Url
-            </FormLabel>
-            <Input
-              id='location'
-              placeholder='Google Maps link of the venue'
-              boxShadow='base'
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-            />
-          </FormControl>
-        </Box>
-      </Flex>
-      <Flex align='flex-end'>
-        <Box borderRadius='5px' w='48%' flexShrink={0} rounded='md' mr={10}>
-          <FormControl mb={6} isRequired>
-            <FormLabel fontSize={18} mb={0}>
-              Max Capacity
-            </FormLabel>
-            <Input
-              id='capacity'
-              placeholder='Event max capacity of participants'
-              boxShadow='base'
-              type='number'
-              value={capacity}
-              onChange={(e) => setCapacity(e.target.value)}
-            />
-          </FormControl>
-        </Box>
-        <Box borderRadius='5px' w='48%' flexShrink={0} rounded='md'>
-          <FormControl mb={6} isRequired>
-            <FormLabel fontSize={18} htmlFor='ngo'>
-              NGO
-            </FormLabel>
-            <Select placeholder='Select NGO'>
-              <option value='Ahimsa Foundation'>Ahimsa Foundation</option>
-              <option value='Ahvaan Trust'>Ahvaan Trust</option>
-            </Select>
-          </FormControl>
-        </Box>
-      </Flex>
-      <Box w='full'>
-        <FormControl isRequired>
-          <FormLabel fontSize={18} htmlFor='description'>
-            Description
-          </FormLabel>
-          <Textarea
-            placeholder='Event Description'
-            boxShadow='base'
-            id='description'
-            size='lg'
-            rows={4}
-            isRequired
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
+    <Box position='relative'>
+      {isLoading && (
+        <Flex
+          position='absolute'
+          left='0'
+          w='100%'
+          h='60vh'
+          justify='center'
+          align='center'
+        >
+          <Spinner
+            thickness='6px'
+            speed='0.65s'
+            emptyColor='gray.200'
+            color='brand.500'
+            // size='xl'
+            w='80px'
+            h='80px'
           />
-        </FormControl>
-      </Box>
-      <Box w='100%' display='flex' justifyContent='center'>
-        <Button mt={7} w={200} h={50} mb={6} onClick={() => onSubmit()}>
-          SUBMIT
-        </Button>
+        </Flex>
+      )}
+      <Box
+        opacity={isLoading ? '0' : '1'}
+        visibility={isLoading ? 'hidden' : 'visible'}
+      >
+        <Flex>
+          <Box borderRadius='5px' w='48%' flexShrink={0} rounded='md' mr={10}>
+            <FormControl mb={6} isRequired>
+              <FormLabel fontSize={18} htmlFor='eventName'>
+                Event Name
+              </FormLabel>
+              <Input
+                id='eventName'
+                placeholder='Event Name'
+                boxShadow='base'
+                value={eventName}
+                onChange={(e) => setEventName(e.target.value)}
+              />
+            </FormControl>
+            <FormControl mb={6} isRequired>
+              <FormLabel fontSize={18} htmlFor='community'>
+                Organizing Community
+              </FormLabel>
+              <Input
+                id='Community'
+                placeholder='Name Of Organizers'
+                boxShadow='base'
+                value={community}
+                onChange={(e) => setCommunity(e.target.value)}
+              />
+            </FormControl>
+          </Box>
+          <Box borderRadius='5px' w='48%' flexShrink={0} rounded='md'>
+            <FormControl mb={6}>
+              <FormLabel fontSize={18} htmlFor='uploadImage'>
+                Upload Image
+              </FormLabel>
+              <ImageUploader image={image} setImage={setImage} />
+            </FormControl>
+          </Box>
+        </Flex>
+        <Box display={isLoading ? 'none' : 'block'}>
+          <Flex align='flex-end'>
+            <Box borderRadius='5px' w='48%' flexShrink={0} rounded='md' mr={10}>
+              <FormLabel fontSize={18} mb={0}>
+                Select Date
+              </FormLabel>
+              <Flex justify='space-between'>
+                <FormControl mb={6} w='47%' isRequired>
+                  <FormHelperText mb={2}>From</FormHelperText>
+                  <Input
+                    type='datetime-local'
+                    id='fromDate'
+                    boxShadow='base'
+                    onChange={(val) => setFormDate(val.target.value)}
+                  />
+                </FormControl>
+                <FormControl mb={6} w='47%' isRequired>
+                  <FormHelperText mb={2}>To</FormHelperText>
+                  <Input
+                    type='datetime-local'
+                    id='toDate'
+                    boxShadow='base'
+                    onChange={(val) => setToDate(val.target.value)}
+                  />
+                </FormControl>
+              </Flex>
+            </Box>
+            <Box borderRadius='5px' w='48%' flexShrink={0} rounded='md'>
+              <FormControl mb={6} isRequired>
+                <FormLabel fontSize={18} htmlFor='fees'>
+                  Fees
+                </FormLabel>
+                <Input
+                  id='fees'
+                  placeholder='Enter the secure deposit amount'
+                  boxShadow='base'
+                  type='number'
+                  value={fees}
+                  onChange={(e) => setFees(e.target.value)}
+                />
+              </FormControl>
+            </Box>
+          </Flex>
+          <Flex align='flex-end'>
+            <Box borderRadius='5px' w='48%' flexShrink={0} rounded='md' mr={10}>
+              <FormControl mb={6} isRequired>
+                <FormLabel fontSize={18} mb={0}>
+                  Venue
+                </FormLabel>
+                <Input
+                  id='venue'
+                  placeholder='Event Venue'
+                  boxShadow='base'
+                  value={venue}
+                  onChange={(e) => setVenue(e.target.value)}
+                />
+              </FormControl>
+            </Box>
+            <Box borderRadius='5px' w='48%' flexShrink={0} rounded='md'>
+              <FormControl mb={6} isRequired>
+                <FormLabel fontSize={18} htmlFor='fees'>
+                  Location Url
+                </FormLabel>
+                <Input
+                  id='location'
+                  placeholder='Google Maps link of the venue'
+                  boxShadow='base'
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                />
+              </FormControl>
+            </Box>
+          </Flex>
+          <Box w='full'>
+            <FormControl isRequired>
+              <FormLabel fontSize={18} htmlFor='description'>
+                Description
+              </FormLabel>
+              <Textarea
+                placeholder='Event Description'
+                boxShadow='base'
+                id='description'
+                size='lg'
+                rows={4}
+                isRequired
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </FormControl>
+          </Box>
+          <Box w='100%' display='flex' justifyContent='center'>
+            <Button mt={7} w={200} h={50} mb={6} onClick={() => onSubmit()}>
+              SUBMIT
+            </Button>
+          </Box>
+        </Box>
       </Box>
     </Box>
   );
