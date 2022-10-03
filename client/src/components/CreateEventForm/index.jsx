@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import * as firestore from 'firebase/firestore';
 import { collection, doc, setDoc } from 'firebase/firestore';
 import { db } from '../../utils/firebase';
-import { useAddress, useContract, useContractWrite } from '@thirdweb-dev/react';
+import { useAddress } from '@thirdweb-dev/react';
 import connectContract from '../../utils/connectContract';
 import moment from 'moment';
 import {
@@ -15,21 +15,28 @@ import {
   Textarea,
   Button,
   Spinner,
+  Select,
 } from '@chakra-ui/react';
 import ImageUploader from './ImageUploder';
 import { ethers } from 'ethers';
 import storeFiles from '../../utils/web3storage';
 
 const CreateEventForm = () => {
+  const address = useAddress();
   const [image, setImage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [eventName, setEventName] = useState('');
   const [community, setCommunity] = useState('');
-  const [fromDate, setFormDate] = useState();
-  const [toDate, setToDate] = useState();
+  const [fromDate, setFormDate] = useState('');
+  const [toDate, setToDate] = useState('');
   const [fees, setFees] = useState(0);
   const [venue, setVenue] = useState('');
   const [location, setLocation] = useState('');
+  const [capacity, setCapacity] = useState(0);
+  const [ngo, setNGO] = useState({
+    value: 'Ahvaan Trust',
+    label: 'Ahvaan Trust',
+  });
   const [description, setDescription] = useState('');
 
   const onSubmit = async () => {
@@ -75,12 +82,13 @@ const CreateEventForm = () => {
           event.timestamp,
           deposit,
           10,
-          '12234435676',
+          event.eventName,
           { gasLimit: 900000 },
         );
         console.log('Minting...', txn.hash);
         let wait = await txn.wait();
         console.log('Minted -- ', txn.hash);
+        // console.log(wait);
         console.log(wait);
       } else {
         console.log('Error getting contract.');
